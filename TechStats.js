@@ -7,52 +7,26 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
     }
     const jsonData = JSON.parse(data);
 
-    // Function to find internal_name by ID
-    function findInternalNameById(id) {
-        const unitUpgrades = jsonData.data.unit_upgrades;
-        for (const key in unitUpgrades) {
-            if (unitUpgrades[key].ID === id) {
-                return unitUpgrades[key].internal_name;
-            }
-        }
-        return null; // Return null if ID is not found
-    }
-
-    // Function to find ID by internal_name
-    function findIDByName(name) {
-        const unitUpgrades = jsonData.data.unit_upgrades;
-        for (const key in unitUpgrades) {
-            if (unitUpgrades[key].internal_name === name) {
-                return unitUpgrades[key].ID;
-            }
-        }
-        return null;
-    }
-
     let civs = [];
 	
-	//change below
+	//archer techs
 	const techList = ["201","437","219","492","474"];
 	const techNames = ["Bracer","Thumbring","Ring Armor","Arbalester","Heavy Cav Archer"];
 	const isUnit = [false, false, false, true, true];
-	//change above
 	
 	/*
+	//infantry techs
 	const techList = ["75","875","80","567","359"];
 	const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
 	const isUnit = [false, false, false, true, true];
 	*/
 	
-	/*const techList = ["75","435","80","569","441"];
+	/*
+	//cavalry techs
+	const techList = ["75","435","80","569","441"];
 	const techNames = ["Blast Furnace","Bloodlines","Plate Barding","Paladin","Hussar"];
 	const isUnit = [false, false, false, true, true];
 	*/
-	
-	process.stdout.write("Civilization");
-	for(let i = 0; i < techNames.length; i++){
-		process.stdout.write("," + techNames[i]);
-	}
-	console.log("");
 
     function checkCivs(techArray) {
         const allCivs = jsonData.techtrees;
@@ -85,34 +59,20 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
     }
 
 	
-	
    checkCivs(techList);
    
-   
-        for (const civ of civs) {
+   //formats output as csv, but needs to be pasted into the csv file
+   process.stdout.write("Civilization"); //csv header
+	for(let i = 0; i < techNames.length; i++){
+		process.stdout.write("," + techNames[i]);
+	}
+	console.log("");
+	
+   for (const civ of civs) {//csv data
 			process.stdout.write(civ.name);
 			for(let i = 0; i < techList.length; i++){
 				process.stdout.write("," + civ.techStatus[i]);
 		}
 			console.log("");
 	}
-	
-	
-	/*for(let i = 0; i < techList.length; i++){
-		console.log('\n' + techNames[i] + '\n' + "-------------");
-        for (const civ of civs) {
-			if(civ.techStatus[i] === true){
-				console.log(civ.name); 
-				}
-		}
-	}
-	
-	for(let i = 0; i < techList.length; i++){
-		console.log('\n' + "no " + techNames[i] + '\n' + "-------------");
-        for (const civ of civs) {
-			if(civ.techStatus[i] === false){
-				console.log(civ.name); 
-				}
-		}
-	}*/
 });
