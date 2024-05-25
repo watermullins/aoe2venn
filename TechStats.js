@@ -9,17 +9,19 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
 
     let civs = [];
 	
+	/*
 	//archer techs
 	const techList = ["201","437","219","492","474"];
 	const techNames = ["Bracer","Thumbring","Ring Armor","Arbalester","Heavy Cav Archer"];
 	const isUnit = [false, false, false, true, true];
+	*/
 	
-	/*
+	
 	//infantry techs
-	const techList = ["75","875","80","567","359"];
+	const techList = ["75","875","77","567","359"];
 	const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
 	const isUnit = [false, false, false, true, true];
-	*/
+
 	
 	/*
 	//cavalry techs
