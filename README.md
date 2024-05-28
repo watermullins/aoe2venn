@@ -1,4 +1,5 @@
 **Creating Tech CSVs**
+
 Download TechStats.js and data.json, place in the same folder
 Verify Node.js is installed: in command prompt type "Node" if you have it you should see something like Welcome to Node.js v16.16.0.
 
@@ -18,3 +19,4 @@ isUnit change value between true and false
 2. run with "Node TechStats.js"
 3. paste csv output to a csv file, make sure not to miss header eg. Civilization,Redemption,Sanctity,BlockPrinting
 
+**Generating Sets**
