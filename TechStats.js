@@ -18,9 +18,9 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
 	
 	
 	//infantry techs
-	const techList = ["75","875","77","567","359"];
-	const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
-	const isUnit = [false, false, false, true, true];
+	//const techList = ["75","875","77","567","359"];
+	//const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
+	//const isUnit = [false, false, false, true, true];
 
 	
 	/*
@@ -29,6 +29,12 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
 	const techNames = ["Blast Furnace","Bloodlines","Plate Barding","Paladin","Hussar"];
 	const isUnit = [false, false, false, true, true];
 	*/
+	
+
+	//monk techs
+	const techList = ["316","231","230"];
+	const techNames = ["Redemption","Sanctity","BlockPrinting"];
+	const isUnit = [false, false, false];
 
     function checkCivs(techArray) {
         const allCivs = jsonData.techtrees;
@@ -77,4 +83,5 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
 		}
 			console.log("");
 	}
+	
 });
