@@ -3,7 +3,7 @@ install.packages("VennDiagram")
 library(VennDiagram)
 
 # Load data
-data <- read.csv("C:/Users/stuar/workspace/javascript/statsjs/cavtechtext.csv")
+data <- read.csv("C:/Users/stuar/workspace/javascript/statsjs/techs.csv")
 
 # Extract column names excluding the first column (Civilization)
 column_names <- names(data)[-1]
@@ -23,7 +23,7 @@ venn.plot <- venn.diagram(
   cex = 1.5,
   cat.cex = 1.5,
   cat.pos = 0,
-  cat.dist = 0.05,
+  cat.dist = -.05,
   cat.col = rep("black", length(column_names)),
   lwd = 2,
   resolution = 800,
@@ -35,6 +35,6 @@ grid.newpage()
 grid.draw(venn.plot)
 
 # Save Venn to file
-png(filename = "cav_venn.png", width = 800, height = 800)
+png(filename = "venn.png", width = 800, height = 800)
 grid.draw(venn.plot)
 dev.off()
