@@ -1,6 +1,6 @@
 **Creating Tech CSVs**
 
-Download TechStats.js and data.json, place in the same folder
+Download TechStats.js, data.json, and papaparse. Place in the same folder.
 Verify Node.js is installed: in command prompt type "Node" if you have it you should see something like Welcome to Node.js v16.16.0.
 
 All you need to change is a set of 3 parallel arrays.For example:
