@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-fs.readFile('truedata.json', 'utf8', (err, data) => {
+fs.readFile('data.json', 'utf8', (err, data) => {
     if (err) {
         console.error('Error reading the file:', err);
         return;
@@ -83,5 +83,4 @@ fs.readFile('truedata.json', 'utf8', (err, data) => {
 		}
 			console.log("");
 	}
-	
 });
