@@ -1,41 +1,39 @@
 const fs = require('fs');
 const Papa = require('papaparse');
 
-fs.readFile('data.json', 'utf8', (err, data) => {
+function readJsonFile(callback) {
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            callback(err);
+            return;
+        }
+        callback(null, JSON.parse(data));
+    });
+}
+function writeToCsv(csvContent, callback) {
+    fs.writeFile('techs.csv', csvContent, 'utf8', (err) => {
+        if (err) {
+            console.error('Error writing to file:', err);
+            callback(err);
+            return;
+        }
+        console.log('Data has been written to techs.csv');
+        callback(null);
+    });
+}
+readJsonFile((err, jsonData) => {
     if (err) {
-        console.error('Error reading the file:', err);
+        console.error('Error reading JSON file:', err);
         return;
     }
-    const jsonData = JSON.parse(data);
 
     let civs = [];
 
-	/*//archer techs
-	const techList = ["201","437","219","492","474"];
-	const techNames = ["Bracer","Thumbring","Ring Armor","Arbalester","Heavy Cav Archer"];
-	const isUnit = [false, false, false, true, true];
-	*/
-
-
-	//infantry techs
-	//const techList = ["75","875","77","567","359"];
-	//const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
-	//const isUnit = [false, false, false, true, true];
-
-
-	/*
-	//cavalry techs
-	const techList = ["75","435","80","569","441"];
-	const techNames = ["Blast Furnace","Bloodlines","Plate Barding","Paladin","Hussar"];
-	const isUnit = [false, false, false, true, true];
-	*/
-
-/*
-	//monk techs
-	const techList = ["316","231","230"];
-	const techNames = ["Redemption","Sanctity","BlockPrinting"];
-	const isUnit = [false, false, false];*/
-
+    // Gunpowder techs
+    const techList = ["36", "5", "377"];
+    const techNames = ["BBC", "Hand Cannon", "SE"];
+    const isUnit = [true, true, false];
 
     function checkCivs(techArray) {
         const allCivs = jsonData.techtrees;
@@ -45,7 +43,7 @@ fs.readFile('data.json', 'utf8', (err, data) => {
             const civTechs = allCivs[key].techs;
             const techStatus = [];
 
-            for (let i = 0; i < techArray.length; i++) { 
+            for (let i = 0; i < techArray.length; i++) {
                 let found = false;
                 for (const unitKey in unitTechs) {
                     const unit = unitTechs[unitKey];
@@ -54,7 +52,7 @@ fs.readFile('data.json', 'utf8', (err, data) => {
                         break;
                     }
                 }
-                for (const techKey in civTechs) { 
+                for (const techKey in civTechs) {
                     const tech = civTechs[techKey];
                     if (techArray[i] === tech.id.toString() && isUnit[i] === false) {
                         found = true;
@@ -69,7 +67,7 @@ fs.readFile('data.json', 'utf8', (err, data) => {
 
     checkCivs(techList);
 
-    //write to csv
+    // Write to csv
     let csvContent = "Civilization"; // csv header
     for (let i = 0; i < techNames.length; i++) {
         csvContent += "," + techNames[i];
@@ -84,30 +82,32 @@ fs.readFile('data.json', 'utf8', (err, data) => {
         csvContent += "\n";
     }
 
-    fs.writeFile('techs.csv', csvContent, 'utf8', (err) => {
+    // Write data to techs.csv file
+    writeToCsv(csvContent, (err) => {
         if (err) {
-            console.error('Error writing to file:', err);
+            console.error('Error writing CSV file:', err);
             return;
         }
-        console.log('Data has been written to techs.csv');
+
+        // Read techs.csv file and parse using papaparse
+        fs.readFile('techs.csv', 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading the file:', err);
+                return;
+            }
+            Papa.parse(data, {
+                header: true,
+                complete: function(results) {
+                    const civilizations = results.data;
+                    const categories = categorizeCivs(civilizations);
+                    displayCategories(categories);
+                }
+            });
+        });
     });
 });
 
-fs.readFile('techs.csv', 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading the file:', err);
-        return;
-    }
-    Papa.parse(data, {
-        header: true,
-        complete: function(results) {
-            const civilizations = results.data;
-            const categories = categorizeCivs(civilizations);
-            displayCategories(categories);
-        }
-    });
-});
-
+// Function to categorize civilizations
 function categorizeCivs(civs) {
     const categories = {};
 
@@ -134,14 +134,14 @@ function categorizeCivs(civs) {
     return categories;
 }
 
+// Function to display categorized civilizations
 function displayCategories(categories) {
     for (const [key, civNames] of Object.entries(categories)) {
         const techs = key.split('-');
         techs[0].split(', ').forEach(tech => process.stdout.write(` ${tech}:`));
-		console.log("");
-		 process.stdout.write('     ');
+        console.log("");
+        process.stdout.write('     ');
         civNames.forEach(civ => process.stdout.write(`${civ} `));
         console.log('\n');
     }
 }
-
