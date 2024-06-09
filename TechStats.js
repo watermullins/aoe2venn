@@ -10,10 +10,31 @@ fs.readFile('data.json', 'utf8', (err, data) => {
 
     let civs = [];
 
-	//archer techs
+	/*//archer techs
+	const techList = ["201","437","219","492","474"];
+	const techNames = ["Bracer","Thumbring","Ring Armor","Arbalester","Heavy Cav Archer"];
+	const isUnit = [false, false, false, true, true];
+	*/
+
+
+	//infantry techs
+	//const techList = ["75","875","77","567","359"];
+	//const techNames = ["Blast Furnace","Gambesons","Plate Mail","Champion","Halberdier"];
+	//const isUnit = [false, false, false, true, true];
+
+
+	/*
+	//cavalry techs
 	const techList = ["75","435","80","569","441"];
 	const techNames = ["Blast Furnace","Bloodlines","Plate Barding","Paladin","Hussar"];
 	const isUnit = [false, false, false, true, true];
+	*/
+
+/*
+	//monk techs
+	const techList = ["316","231","230"];
+	const techNames = ["Redemption","Sanctity","BlockPrinting"];
+	const isUnit = [false, false, false];*/
 
 
     function checkCivs(techArray) {
