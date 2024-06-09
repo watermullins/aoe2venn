@@ -17,6 +17,3 @@ isUnit change value between true and false
 **Running**
 1. Open command prompt, cd into program folder
 2. run with "Node TechStats.js"
-3. paste csv output to a csv file, make sure not to miss header eg. Civilization,Redemption,Sanctity,BlockPrinting
-
-**Generating Sets**
