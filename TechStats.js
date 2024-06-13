@@ -31,10 +31,29 @@ readJsonFile((err, jsonData) => {
     let civs = [];
 
     // Gunpowder techs
-    const techList = ["36", "5", "377"];
-    const techNames = ["BBC", "Hand Cannon", "SE"];
-    const isUnit = [true, true, false];
+   //const techList = ["36", "5", "377"];
+   //const techNames = ["BBC", "Hand Cannon", "SE"];
+   //const isUnit = [true, true, false];
+	
+//archer techs
+	//const techList = ["201","437","219","492"];
+	//const techNames = ["Bracer","Thumbring","Ring Armor","Arbalester"];
+	//const isUnit = [false, false, false, true];	
+	
+	//cavalry techs
+	//const techList = ["435","80","569","441"];
+	//const techNames = ["Bloodlines","Plate_Barding","Paladin","Hussar"];
+	//const isUnit = [false, false, true, true];
+	
+//monk techs
+	const techList = ["316","231","230"];
+	const techNames = ["Redemption","Sanctity","BlockPrinting"];
+	const isUnit = [false, false, false];
 
+//infantry
+		//const techList = ["875","77","567","359"];
+		//const techNames = ["Gambesons","Plate Mail","Champion","Halberdier"];
+		//const isUnit = [false, false, true, true];
     function checkCivs(techArray) {
         const allCivs = jsonData.techtrees;
         for (const key in allCivs) {
