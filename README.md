@@ -18,3 +18,6 @@ All you need to change is a set of 3 parallel arrays in TechStats.js, for exampl
 **Running**  
 1. Open command prompt, cd into program folder
 2. run with "Node TechStats.js"
+
+**Output**
+The results will be output both into a csv file and into standard output.
