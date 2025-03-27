@@ -19,5 +19,8 @@ All you need to change is a set of 3 parallel arrays in TechStats.js, for exampl
 1. Open command prompt, cd into program folder
 2. run with "Node TechStats.js"
 
-**Output**
-The results will be output both into a csv file and into standard output.
+**Output**  
+The results will be output both into a csv file and into standard output.  
+Here are some examples of what I created using data from this tool:
+https://aoe2tournaments.com/images
+
